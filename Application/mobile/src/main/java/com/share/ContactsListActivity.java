@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.example.james.sharedclasses.Contact;
+import com.example.james.sharedclasses.Profile;
+
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;

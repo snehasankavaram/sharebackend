@@ -7,6 +7,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
+import com.example.james.sharedclasses.Contact;
+
 /**
  * Created by Sneha on 11/26/15.
  */

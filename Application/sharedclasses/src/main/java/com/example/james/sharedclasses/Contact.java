@@ -1,6 +1,4 @@
-package com.share;
-
-import android.graphics.Bitmap;
+package com.example.james.sharedclasses;
 
 import java.io.Serializable;
 import java.util.ArrayList;

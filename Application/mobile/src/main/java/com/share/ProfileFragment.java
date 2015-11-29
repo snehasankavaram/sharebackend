@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.james.sharedclasses.Profile;
+
 /**
  * Created by Sneha on 11/26/15.
  */

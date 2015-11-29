@@ -1,4 +1,4 @@
-package com.share;
+package com.example.james.sharedclasses;
 
 import android.graphics.Bitmap;
 
