@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'db_files_controller/create'
 
   get 'users/show'
   post 'users/create'
