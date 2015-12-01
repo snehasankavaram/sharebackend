@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   post 'db_files/index'
   get 'contacts/index'
   get 'contacts/show'
+  post 'contacts/create'
 
   post 'connection/create'
   get 'connection/show'
