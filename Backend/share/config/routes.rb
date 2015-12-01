@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
+  get 'db_files_controller/create'
+
   get 'users/show'
   post 'users/create'
+  post 'db_files/create'
+  post 'db_files/update'
+  post 'db_files/index'
+  get 'contacts/index'
+  get 'contacts/show'
+
+  post 'connection/create'
+  get 'connection/show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
