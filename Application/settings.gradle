@@ -1,2 +1,0 @@
-include ':mobile', ':wear', ':sharedclasses'
-include ':dropboxChooserSDK'
