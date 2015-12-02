@@ -6,9 +6,12 @@ class UsersController < ApplicationController
   end
 
   def create
-  	 @user = User.new(user_params)
-  	 @user.save
-     head :ok, content_type: "text/html"
+    @existing_user = User.find_by(username: params[:username])
+    if existing_user == nil
+  	   @user = User.new(user_params)
+  	   @user.save
+    end
+    head :ok, content_type: "text/html"
   end
 
   private

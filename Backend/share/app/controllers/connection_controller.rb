@@ -58,7 +58,12 @@ class ConnectionController < ApplicationController
 				break
 			end
 		end
-		render json: { connection: @user_connection.users }
+		if (@user_connection == nil)
+			render json: { connection: nil }
+
+		else
+			render json: { connection: @user_connection.users }
+		end
 
 		# if @connection.users.length >= 2
 		# 	@connection.destroy
