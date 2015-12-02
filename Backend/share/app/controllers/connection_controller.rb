@@ -17,22 +17,36 @@ class ConnectionController < ApplicationController
 
 
 		elsif color_bucket.length == 1
-			# add yourself to connection in color bucket
-			connection = color_bucket[0]
-			connection.users << User.find_by(username: username)
-
+			if color_bucket[0].users.length==1
+				# add yourself to connection in color bucket
+				connection = color_bucket[0]
+				connection.users << User.find_by(username: username)
+			else
+				connection = Connection.create(:color => color, :latitude=>latitude, :longitude=>longitude)
+				# create new connection and add yourself
+				connection.users << User.find_by(username: username)
+				connection.save
+			end
 
 		else
 			time_bucket = [];
 			for connection in color_bucket do
 				# look for connection that is within 1 minute
-				if connection.created_at > connection_time - 1.minute
+				if connection.created_at > connection_time - 30.seconds
 					time_bucket << connection
 				end
 			end
+
 			if time_bucket.length == 1
-				#add yourself to connection
-				connection.users << User.find_by(username: username)
+				if time_bucket[0].users.length==1
+					#add yourself to connection
+					connection = time_bucket[0]
+					connection.users << User.find_by(username: username)
+				else
+					#create new connection and add yourself
+					connection = Connection.create(:color => color, :latitude=>latitude, :longitude=>longitude)
+					connection.users << User.find_by(username: username)
+					connection.save
 
 			else
 				location_bucket = []
