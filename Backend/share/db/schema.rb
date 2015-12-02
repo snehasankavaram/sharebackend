@@ -13,8 +13,13 @@
 
 ActiveRecord::Schema.define(version: 20151201022809) do
 
-# Could not dump table "connections" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "connections", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "color"
+    t.float    "latitude"
+    t.float    "longitude"
+  end
 
   create_table "contacts", force: true do |t|
     t.string   "username"

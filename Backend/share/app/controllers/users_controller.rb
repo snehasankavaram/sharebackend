@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 
   def create
     @existing_user = User.find_by(username: params[:username])
-    if existing_user == nil
+    if @existing_user == nil
   	   @user = User.new(user_params)
   	   @user.save
     end
