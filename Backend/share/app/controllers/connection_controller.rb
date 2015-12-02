@@ -40,6 +40,7 @@ class ConnectionController < ApplicationController
 			end
 
 		end
+		head :ok, content_type: "text/html"
 	end
 
 	# returns the people in the bucket we need (with your username)

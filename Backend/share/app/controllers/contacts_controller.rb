@@ -17,5 +17,6 @@ class ContactsController < ApplicationController
 		@contact = Contact.new(:name => user.name, :email=> user.email, :phone=> user.phone, :occupation=> user.occupation, :username => user.username)
 		@contact.user = owner
 		@contact.save
+		head :ok, content_type: "text/html"
 	end
 end
