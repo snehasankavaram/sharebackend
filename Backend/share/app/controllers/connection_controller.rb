@@ -47,6 +47,7 @@ class ConnectionController < ApplicationController
 					connection = Connection.create(:color => color, :latitude=>latitude, :longitude=>longitude)
 					connection.users << User.find_by(username: username)
 					connection.save
+				end
 
 			else
 				location_bucket = []
