@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   get 'users/show'
   post 'users/create'
+  post 'users/update'
+
   post 'db_files/create'
   post 'db_files/update'
   post 'db_files/index'
@@ -10,7 +12,7 @@ Rails.application.routes.draw do
   post 'contacts/create'
 
   post 'connection/create'
-  get 'connection/show'
+  get  'connection/show'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

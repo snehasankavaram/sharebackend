@@ -14,6 +14,12 @@ class UsersController < ApplicationController
     head :ok, content_type: "text/html"
   end
 
+  def update
+    @user = User.find_by(username: params[:username])
+    @user.update(user_params)
+    head :ok, content_type: "text/html"
+  end
+
   private
 	  def user_params
 	    params.permit(:username, :name, :password, :email, :phone, :occupation)
