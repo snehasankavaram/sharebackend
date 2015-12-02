@@ -49,6 +49,13 @@ class ConnectionController < ApplicationController
 					connection.save
 				end
 
+			elsif time_bucket.length == 0
+				connection = Connection.create(:color => color, :latitude=>latitude, :longitude=>longitude)
+				# add yourself in connection
+				connection.users << User.find_by(username: username)
+				connection.save
+
+			#multiple connections at the same time with the same color, so use location
 			else
 				location_bucket = []
 				#TODO: add yourself to closest location connection
