@@ -1,0 +1,2 @@
+module ViewMetadataHelper
+end

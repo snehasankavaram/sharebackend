@@ -6,6 +6,7 @@ class DbFilesController < ApplicationController
   	drop_box_link = params[:link]
 
   	new_file = DbFile.new(:link => drop_box_link)
+    new_file.view_count = 0
   	new_file.user = @user
   	new_file.save
     head :ok, content_type: "text/html"
@@ -13,12 +14,36 @@ class DbFilesController < ApplicationController
 
   def update
   	@file = DbFile.find(params[:id])
+
+    #set view count
   	@file.update(:view_count => params[:view_count])
+
+    #create new metadata object and set file of that object to this file
+    metadata = ViewMetadatum.new(:view_username => params[:viewed_by]);
+    metadata.db_file = @file
+    metadata.save
+
+
     head :ok, content_type: "text/html"
   end
 
   def index
   	@user = User.find_by(username: params[:username])
-  	render json: { files: @user.files }
+
+    render_list = [];
+
+    for file in @user.db_files do
+      file_hash = Hash.new
+      file_hash["file"] = file
+      file_hash["metadata"] = file.view_metadata
+      render_list << file_hash
+    end
+    render json: { files: render_list }
+  end
+
+  def delete
+    @file = DbFile.find(params[:id])
+    @file.delete
+    head :ok, content_type: "text/html"
   end
 end

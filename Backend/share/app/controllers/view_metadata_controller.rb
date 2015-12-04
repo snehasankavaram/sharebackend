@@ -1,0 +1,2 @@
+class ViewMetadataController < ApplicationController
+end

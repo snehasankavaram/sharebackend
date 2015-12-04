@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151201022809) do
+ActiveRecord::Schema.define(version: 20151203193945) do
 
   create_table "connections", force: true do |t|
     t.datetime "created_at"
@@ -22,14 +22,10 @@ ActiveRecord::Schema.define(version: 20151201022809) do
   end
 
   create_table "contacts", force: true do |t|
-    t.string   "username"
-    t.string   "name"
-    t.string   "email"
-    t.string   "phone"
-    t.string   "occupation"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.text     "notes"
   end
 
   add_index "contacts", ["user_id"], name: "index_contacts_on_user_id"
@@ -44,18 +40,37 @@ ActiveRecord::Schema.define(version: 20151201022809) do
 
   add_index "db_files", ["user_id"], name: "index_db_files_on_user_id"
 
-  create_table "users", force: true do |t|
+  create_table "profiles", force: true do |t|
     t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "occupation"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "contact_id"
+  end
+
+  add_index "profiles", ["contact_id"], name: "index_profiles_on_contact_id"
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
+
+  create_table "users", force: true do |t|
     t.string   "username"
     t.string   "password"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "email"
-    t.string   "phone"
-    t.string   "occupation"
     t.integer  "connection_id"
   end
 
   add_index "users", ["connection_id"], name: "index_users_on_connection_id"
+
+  create_table "view_metadata", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "view_username"
+    t.integer  "db_file_id"
+  end
+
+  add_index "view_metadata", ["db_file_id"], name: "index_view_metadata_on_db_file_id"
 
 end

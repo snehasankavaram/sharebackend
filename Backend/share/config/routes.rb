@@ -1,15 +1,23 @@
 Rails.application.routes.draw do
 
+  get 'profile/create'
+
+  get 'profile/update'
+
   get 'users/show'
   post 'users/create'
   post 'users/update'
 
   post 'db_files/create'
   post 'db_files/update'
-  post 'db_files/index'
+  get 'db_files/index'
+  post 'db_files/delete'
+
   get 'contacts/index'
   get 'contacts/show'
   post 'contacts/create'
+  post 'contacts/update'
+  post 'contacts/delete'
 
   post 'connection/create'
   get  'connection/show'
