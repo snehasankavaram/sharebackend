@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   protect_from_forgery
   def show
   	 @user = User.find_by(username: params[:username])
-     render json: { user: @user, profile: Profile.find(@user.user_profile_id}
+     render json: { user: @user, profile: Profile.find(@user.user_profile_id) }
   end
 
   def create
