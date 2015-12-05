@@ -10,7 +10,7 @@ class ContactsController < ApplicationController
 		for contact in @user.contacts do
 			contact_hash = Hash.new
 			contact_hash["contact"] = contact
-			contact_hash["profile"] = contact.profile
+			contact_hash["profile"] = Profile.find(contact.profile_id)
 			render_list << contact_hash
 		end
 
@@ -20,18 +20,17 @@ class ContactsController < ApplicationController
 	#pass in username you want to show
 	def show
 		@contact = Contact.find(params[:id])
-    	render json: { contact: @contact, profile: @contact.profile }
+    	render json: { contact: @contact, profile: Profile.find(@contact.profile_id) }
 	end
 
 	def create
 		owner = User.find_by(username: params[:my_username])
 		user = User.find_by(username: params[:contact_username])
 		@contact = Contact.new()
-		@contact.profile = user.profile
+		@contact.profile_id = Profile.find(user.profile_id).id
 		@contact.user = owner
 		@contact.save
-		head :ok, content_type: "text/html"
-		render json: { contact: @contact, profile: @contact.profile }
+		render json: { contact: @contact, profile: Profile.find(@contact.profile_id) }
 	end
 
 	def update
