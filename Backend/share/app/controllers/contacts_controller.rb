@@ -31,6 +31,7 @@ class ContactsController < ApplicationController
 		@contact.user = owner
 		@contact.save
 		head :ok, content_type: "text/html"
+		render json: { contact: @contact, profile: @contact.profile }
 	end
 
 	def update
