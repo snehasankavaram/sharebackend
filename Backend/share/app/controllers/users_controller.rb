@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @existing_user = User.find_by(username: params[:username])
+    @existing_user = User.find_by(username: params[:user][:username])
     if @existing_user == nil
        @profile = Profile.new(profile_params)
        @profile.save
@@ -19,9 +19,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by(username: params[:username])
+    @user = User.find_by(username: params[:user][:username])
     @user.update(user_params)
-    puts profile_params[:profile]
+    #puts profile_params[:profile]
     # @user.profile.update(:name => profile_params[:name], :email => profile_params[:email],
     #     :phone => profile_params[:phone], :occupation => profile_params[:occupation])
     @user.profile.update(profile_params)
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
   private
 	  def user_params
-	    params.permit(:username, :password)
+	    params.require(:user).permit(:username, :password)
 	  end
 
     def profile_params
