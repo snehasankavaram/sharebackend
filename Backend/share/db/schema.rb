@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151205232332) do
+ActiveRecord::Schema.define(version: 20151206011316) do
 
   create_table "connections", force: true do |t|
     t.datetime "created_at"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20151205232332) do
     t.integer  "user_id"
     t.text     "notes"
     t.integer  "user_profile_id"
+    t.string   "username"
   end
 
   add_index "contacts", ["user_id"], name: "index_contacts_on_user_id"

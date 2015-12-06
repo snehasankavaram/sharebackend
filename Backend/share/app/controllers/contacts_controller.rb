@@ -10,7 +10,11 @@ class ContactsController < ApplicationController
 		for contact in @user.contacts do
 			contact_hash = Hash.new
 			contact_hash["contact"] = contact
-			contact_hash["profile"] = Profile.find(contact.user_profile_id)
+			contact_hash["profile"] = Profile.find(contact.user_profile_id);
+			contact_hash["files"]  = []
+			if contact.username != nil
+				contact_hash["files"] = User.find_by(username: contact.username).db_files
+			end
 			render_list << contact_hash
 		end
 
@@ -28,6 +32,7 @@ class ContactsController < ApplicationController
 		user = User.find_by(username: params[:contact_username])
 		@contact = Contact.new()
 		@contact.user_profile_id = Profile.find(user.user_profile_id).id
+		@contact.username = user.username
 		@contact.user = owner
 		@contact.save
 		render json: { contact: @contact, profile: Profile.find(@contact.user_profile_id) }
