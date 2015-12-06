@@ -21,6 +21,7 @@ class DbFilesController < ApplicationController
     #create new metadata object and set file of that object to this file
     if params[:viewed_by] != nil
       metadata = ViewMetadatum.new(:view_username => params[:viewed_by]);
+      metadata.view_count = metadata.view_count +1
       metadata.db_file = @file
       metadata.save
     end
@@ -50,7 +51,7 @@ class DbFilesController < ApplicationController
 
   private
     def file_params
-      params.permit(:link, :view_count, :local_path, :file_name)
+      params.permit(:link, :local_path, :file_name)
     end
 
 end
