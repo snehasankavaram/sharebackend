@@ -50,7 +50,7 @@ class DbFilesController < ApplicationController
 
   private
     def file_params
-      params.permit(:link, :view_count, :local_path)
+      params.permit(:link, :view_count, :local_path, :file_name)
     end
 
 end
